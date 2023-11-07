@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+import { Component } from "react";
 
-function App() {
-  const [changeText, setChangeText] = useState(false);
+class App extends Component {
+  state = { changeText: 0 };
 
-  const handleChange = () => {
-    setChangeText((prev) => !prev);
+  onincrease = () => {
+    this.setState((perv) => ({ changeText: perv.changeText + 1 }));
   };
 
-  return (
-    <div>
-      <h1>{changeText ? "Home" : "aboutPage"}</h1>
+  ondecrease = () => {
+    this.setState((perv) => ({ changeText: perv.changeText - 1 }));
+  };
 
-      <button onClick={handleChange} type="button">
-        change
-      </button>
-    </div>
-  );
+  render() {
+    const { changeText } = this.state;
+    return (
+      <div>
+        <h1>{changeText}</h1>
+
+        <button onClick={this.onincrease} type="button">
+          increase
+        </button>
+
+        <button onClick={this.ondecrease} type="button">
+          decrease
+        </button>
+      </div>
+    );
+  }
 }
-
 export default App;
